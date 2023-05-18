@@ -226,10 +226,8 @@ nav {
     width: 100%;
 }
 
-.restaurants-card-par-2 {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.restaurants-card article {
+    position: relative;
 }
 
 .card {
@@ -243,7 +241,6 @@ nav {
     flex-direction: column;
     width: 100%;
     margin: auto;
-    position: relative;
 }
 
 .card-title {
@@ -289,7 +286,12 @@ nav {
 .favorit {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    position: absolute;
+    top: 200px;
+    bottom: auto;  /* Ajustez ces valeurs en fonction de vos besoins */
+    right: 60px;
+    left: auto;
 }
 
 .fa-solid.fa-heart {
@@ -301,6 +303,8 @@ nav {
     color: transparent;
     opacity: 0;
     transition: opacity 0.3s, z-index 0.3s;
+    top: 0;
+    left: 0;
 }
 
 .fa-solid.fa-heart:hover {
@@ -308,13 +312,35 @@ nav {
 }
 
 .fa-regular.fa-heart {
+    position: absolute;
     font-size: 22px;
     opacity: 1;
     transition: opacity 0.3s, z-index 0.3s;
+    top: 0;
+    left: 0;
 }
 
 .fa-regular.fa-heart:hover {
     opacity: 0;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.hidden-checkbox:checked ~ label .fa-regular.fa-heart {
+    opacity: 0;
+}
+
+.hidden-checkbox:checked ~ label .fa-solid.fa-heart {
+    opacity: 1;
+}
+
+label {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
 }
 
 /* Footer */
@@ -442,7 +468,7 @@ ul .fa-solid {
     justify-content: end;
     position: absolute;
     transform: translateX(100%);
-    transition: transform 0.3s ease-out;
+    transition: all 0.3s ease-out;
     right: 50px;
     top: 0;
     bottom: 10px;
@@ -479,7 +505,7 @@ ul .fa-solid {
     align-items: center;
     justify-content: center;
     transform: translateX(100%);
-    transition: transform 0.3s ease-out;
+    transition: all 0.3s ease-out;
     opacity: 0;
     border-radius: 0 20px 20px 0;
 }
