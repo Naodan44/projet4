@@ -258,12 +258,12 @@ nav {
 .card-txt {
     display: flex;
     justify-content: space-between;
-    padding: 0 35px 0 13px;
+    padding: 0 0 0 13px;
     box-sizing: border-box;
 }
 
 .card-content {
-    height: 33%;
+    /*height: 33%;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -275,6 +275,11 @@ nav {
     flex-direction: column;
     gap: 5px;
     width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 11px;
+    padding-bottom: 11px;
 }
 
 .title h5, .title p {
@@ -466,14 +471,11 @@ ul .fa-solid {
     display: flex;
     flex-direction: column;
     justify-content: end;
-    position: absolute;
-    transform: translateX(100%);
     transition: all 0.3s ease-out;
-    right: 50px;
-    top: 0;
-    bottom: 10px;
-    z-index: 100;
-    width: 59px;
+    width: 30px;
+    align-items: start;
+    padding-bottom: 11px;
+    padding-right: 15px;
 }
 
 .nourriture-container {
@@ -487,57 +489,177 @@ ul .fa-solid {
     flex-direction: row;
     gap: 20px;
     background-color: var(--background-gris-clair);
-    padding-top: 11px;
-    padding-bottom: 11px;
     align-items: center;
     border-radius: 20px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .validation-container {
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 59px; /* Ou la largeur que vous voulez pour l'espace vert */
-    background-color: #99E2D0; /* Ou la couleur que vous voulez pour l'espace vert */
+    width: 0;
+    padding-right: 0;
+    background-color: #99E2D0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translateX(100%);
     transition: all 0.3s ease-out;
-    opacity: 0;
     border-radius: 0 20px 20px 0;
 }
 
 .card2:hover .validation-container {
-    transform: translateX(0);
-    opacity: 1;
+    width: 59px;
 }
 
-.card2:hover .prix {
-    transform: translateX(0);
-}
-
-.validation-container .fas {
+.validation-container .fa-sharp.fa-solid.fa-circle-check {
     color: white;
-    font-size: 1.5em;
+    font-size: 20px;
 }
 
 .card2 {
-    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
     background-color: var(--background-blanc);
     position: relative;
+    width: 100%;
+    border-radius: 20px;
 }
 
-@keyframes swipe {
-    from {
-        transform: translateX(100%);
+.card2:hover {
+    cursor: pointer;
+}
+
+.position-validation-container {
+    display: flex;
+    flex-direction: row-reverse;
+    min-width: 45px;
+    transition: all 0.3s ease-out;
+}
+
+.card2:hover .position-validation-container {
+    min-width: 101px;
+}
+
+.fa-sharp.fa-solid.fa-circle-check {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+.card2:hover .fa-sharp.fa-solid.fa-circle-check {
+    opacity: 1;
+}
+
+.toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle:checked ~ .card2 .validation-container {
+    width: 59px;
+}
+
+.toggle:checked ~ .card2 .position-validation-container {
+    min-width: 101px;
+}
+
+.toggle:checked ~ .card2 .fa-sharp.fa-solid.fa-circle-check {
+    opacity: 1;
+}
+
+
+.lds-facebook {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+  }
+  .lds-facebook div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+  }
+  .lds-facebook div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+  }
+  .lds-facebook div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+  }
+
+  .loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* animation pour faire disparaître le loader */
+    animation: fadeOut 3s forwards;
+    animation-fill-mode: forwards;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    z-index: 9998;
+    animation: removeBlur 3s forwards;
+    animation-fill-mode: forwards;
+}
+
+/* animation pour faire disparaître le loader */
+@keyframes fadeOut {
+    90% {
+        opacity: 1;
+        z-index: 9999;
     }
     to {
-        transform: translateX(0);
+        visibility: hidden;
+        opacity: 0;
+        z-index: -100;
+        pointer-events: none;
     }
 }
+
+@keyframes removeBlur {
+    40% {
+        backdrop-filter: blur(10px);
+    }
+    70% {
+        backdrop-filter: blur(0px);
+    }
+    to {
+        backdrop-filter: blur(0px);
+        pointer-events: none;
+    }
+}
+
+  @keyframes lds-facebook {
+    0% {
+      top: 8px;
+      height: 64px;
+    }
+    50%, 100% {
+      top: 24px;
+      height: 32px;
+    }
+  }  
 
 /* Tablette */
 @media (min-width: 768px) {
