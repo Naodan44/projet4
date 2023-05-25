@@ -623,6 +623,59 @@ body::after {
     animation-fill-mode: forwards;
 }
 
+.item {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+.slideFromLeft {
+    animation-name: slideFromLeft;
+}
+
+.slideFromRight {
+    animation-name: slideFromRight;
+}
+
+.delay-2s {
+    animation-delay: 2s;
+}
+
+.delay-3s {
+    animation-delay: 3s;
+}
+
+.delay-4s {
+    animation-delay: 4s;
+}
+
+.favorit2 {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+@keyframes slideFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 /* animation pour faire disparaître le loader */
 @keyframes fadeOut {
     90% {
