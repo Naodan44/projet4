@@ -310,6 +310,7 @@ nav {
     transition: opacity 0.3s, z-index 0.3s;
     top: 0;
     left: 0;
+    cursor: pointer;
 }
 
 .fa-solid.fa-heart:hover {
@@ -434,9 +435,19 @@ ul .fa-solid {
     padding: 15px;
 }
 
-.menu svg {
+.menu .svg-a-la-francaise {
+    height: 28px;
+    width: 180px;
+}
+
+.menu .svg-la-palette-du-gout {
     height: 28px;
     width: 300px;
+}
+
+.menu .svg-la-note-enchantee,.svg-le-delice-des-sens {
+    height: 28px;
+    width: 250px;
 }
 
 .titre-resto {
